@@ -1,3 +1,5 @@
+import styles from '../styles/components/LargeNumberInput.module.css';
+
 import { Text, Row, Button } from '@nextui-org/react';
 import { TiPlusOutline, TiMinusOutline } from 'react-icons/ti';
 
@@ -10,7 +12,10 @@ const LargeNumberInput = (props) => {
                 icon={<TiMinusOutline size={50}/>}
                 onPress={() => props.onChange(props.value - 1)}
             />
-            <Text h1>{props.value || 0}</Text>
+            <Text 
+                h1
+                className={styles.value}
+            >{props.value || 0}</Text>
             <Button
                 auto
                 size="xl"
