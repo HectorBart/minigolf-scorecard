@@ -2,13 +2,21 @@ import styles from '../styles/pages/Setup.module.css';
 
 import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
-import LargeNumberInput from '../components/LargeNumberInput';
 import { useState } from 'react';
 import { TiArrowRightOutline } from 'react-icons/ti';
+import SetupHoles from '../components/SetupHoles';
+import SetupPlayers from '../components/SetupPlayers';
 
 const SetupPage = () => {
 
   const [numberOfHoles, setNumberOfHoles] = useState(1);
+  const [players, setPlayers] = useState([
+    {
+      key: "1",
+      name: "Hector"
+    },
+  ]);
+  const [setupStep, setSetupStep] = useState(1);
 
   return (
     <>
@@ -24,21 +32,24 @@ const SetupPage = () => {
             </Row>
           </Card.Header>
           <Card.Body>
-            <Row className={styles.setupHint} justify="center">
-              <Text h3>How many holes are there?</Text>
-            </Row>
-            <Row className={styles.setupInput} justify="center">
-              <LargeNumberInput
-                value={numberOfHoles}
-                max={99}
-                min={1}
-                onChange={(e) => setNumberOfHoles(e)}
+            { setupStep === 1 ?
+              <SetupHoles
+                numberOfHoles={numberOfHoles}
+                setNumberOfHoles={setNumberOfHoles}
               />
-            </Row>
+              :
+              <>
+              <SetupPlayers
+                players={players}
+                setPlayers={setPlayers}
+              />
+              </>
+            }
             <Row className={styles.setupNext} justify="center">
               <Button
                 size="xl"
                 icon={<TiArrowRightOutline size={50}/>}
+                onPress={() => setSetupStep(setupStep + 1)}
               />
             </Row>
           </Card.Body>

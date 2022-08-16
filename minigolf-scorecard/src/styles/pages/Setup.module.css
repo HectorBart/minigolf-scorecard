@@ -13,10 +13,6 @@
   margin: 1.5rem;
 }
 
-.setupHint {
-  margin: 0 0 3rem 0;
-}
-
 .setupNext {
   margin: 6rem 0 0 0;
 }
@@ -25,10 +21,6 @@
 
   .cardTitle {
     font-size: 10vw
-  }
-
-  .setupHint > * {
-    font-size: 7vw;
   }
 
 }
