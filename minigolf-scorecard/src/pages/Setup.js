@@ -2,9 +2,13 @@ import styles from '../styles/pages/Setup.module.css';
 
 import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
-import { TiPlusOutline, TiMinusOutline } from 'react-icons/ti';
+import LargeNumberInput from '../components/LargeNumberInput';
+import { useState } from 'react';
 
 const SetupPage = () => {
+
+  const [numberOfHoles, setNumberOfHoles] = useState(0);
+
   return (
     <>
       <Helmet>
@@ -20,14 +24,13 @@ const SetupPage = () => {
           </Card.Header>
           <Card.Body>
             <Row className={styles.setupHint} justify="center">
-              <Text h3>How many players are there?</Text>
+              <Text h3>How many holes are there?</Text>
             </Row>
             <Row className={styles.setupInput} justify="center">
-              <Row justify="center">
-                <Button auto size="xl" icon={<TiMinusOutline size={50}/>}></Button>
-                <Text h1>1</Text>
-                <Button auto size="xl" icon={<TiPlusOutline size={50}/>}></Button>
-              </Row>
+              <LargeNumberInput
+                value={numberOfHoles}
+                onChange={(e) => setNumberOfHoles(e)}
+              />
             </Row>
           </Card.Body>
         </Card>
