@@ -13,11 +13,15 @@ const SetupPage = () => {
   const [players, setPlayers] = useState([
     {
       key: "1",
-      name: "Hector"
+      name: "Test 1"
     },
     {
       key: "2",
-      name: "Bob"
+      name: "Test 2"
+    },
+    {
+      key: "3",
+      name: "Test 3"
     },
   ]);
   const [setupStep, setSetupStep] = useState(1);
