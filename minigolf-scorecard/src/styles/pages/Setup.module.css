@@ -2,8 +2,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  padding-top: 0rem;
-  padding-bottom: 1.5rem;
+  padding: 0;
 }
 
 .card {
