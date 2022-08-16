@@ -8,7 +8,7 @@ import { TiArrowRightOutline } from 'react-icons/ti';
 
 const SetupPage = () => {
 
-  const [numberOfHoles, setNumberOfHoles] = useState(0);
+  const [numberOfHoles, setNumberOfHoles] = useState(1);
 
   return (
     <>
@@ -30,6 +30,8 @@ const SetupPage = () => {
             <Row className={styles.setupInput} justify="center">
               <LargeNumberInput
                 value={numberOfHoles}
+                max={99}
+                min={1}
                 onChange={(e) => setNumberOfHoles(e)}
               />
             </Row>
