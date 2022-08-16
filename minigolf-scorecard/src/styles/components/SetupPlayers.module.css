@@ -2,10 +2,26 @@
   margin: 0 0 3rem 0;
 }
 
+.setupPlayersTable {
+  width: 50vw;
+}
+
+.setupPlayersTableActions {
+  float: right;
+}
+
+.setupPlayersButton {
+  margin: 1rem 0 0 0;
+}
+
 @media only screen and (max-width: 600px) {
 
   .setupHint > * {
     font-size: 7vw;
+  }
+
+  .setupPlayersTable {
+    width: 80vw;
   }
 
 }

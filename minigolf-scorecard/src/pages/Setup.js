@@ -15,6 +15,10 @@ const SetupPage = () => {
       key: "1",
       name: "Hector"
     },
+    {
+      key: "2",
+      name: "Bob"
+    },
   ]);
   const [setupStep, setSetupStep] = useState(1);
 

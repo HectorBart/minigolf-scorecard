@@ -1,9 +1,13 @@
 import styles from '../styles/components/SetupPlayers.module.css';
 
 import { Text, Row, Table, Button } from '@nextui-org/react';
-import { TiTrash, TiEdit } from 'react-icons/ti';
+import { TiTrash, TiEdit, TiPlusOutline } from 'react-icons/ti';
+import AddPlayerModal from './AddPlayerModal';
+import { useState } from 'react';
 
 const SetupPlayers = (props) => {
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const columns = [
         {
@@ -16,6 +20,10 @@ const SetupPlayers = (props) => {
         }
     ];
 
+    const addPlayerAction = () => {
+        setModalVisible(true);
+    }
+
     const renderCell = (player, columnKey) => {
         const cellValue = player[columnKey];
         switch (columnKey) {
@@ -26,26 +34,23 @@ const SetupPlayers = (props) => {
             case "actions":
                 return (
                     <Button.Group
+                        className={styles.setupPlayersTableActions}
                         size="xs"
                         vertical
                         bordered
                         color="gradient"
                     >
                         <Button
-                            auto
-                            size="sm"
                             icon={<TiEdit size={20}/>}
                         />
                         <Button
-                            auto
-                            size="sm"
                             icon={<TiTrash size={20}/>}
                         />
                     </Button.Group>
                 );
             default:
                 return (
-                    <></>
+                    <Text>{cellValue}</Text>
                 );
         }
     }
@@ -55,11 +60,16 @@ const SetupPlayers = (props) => {
             <Row className={styles.setupHint} justify="center">
                 <Text h3>Who's playing?</Text>
             </Row>
-            <Row className={styles.setupInput} justify="center">
-                <Table>
+            <Row className={styles.setupPlayersTableRow} justify="center">
+                <Table className={styles.setupPlayersTable}>
                     <Table.Header columns={columns}>
                         {(c) => (
-                        <Table.Column key={c.key}>{c.label}</Table.Column>
+                        <Table.Column 
+                            key={c.key}
+                            hideHeader={c.key === "actions"}
+                            align={c.key === "actions" ? "end" : "start"}
+                        >{c.label}
+                        </Table.Column>
                         )}
                     </Table.Header>
                     <Table.Body items={props.players}>
@@ -71,6 +81,18 @@ const SetupPlayers = (props) => {
                     </Table.Body>
                 </Table>
             </Row>
+            <Row className={styles.setupPlayersButton} justify="center">
+                <Button
+                    size="lg"
+                    icon={<TiPlusOutline size={30} />}
+                    onPress={() => addPlayerAction()}
+                />
+            </Row>
+
+            <AddPlayerModal 
+                visible={modalVisible}
+                closeHandler={() => setModalVisible(false)}
+            />
         </>
     );
 }
