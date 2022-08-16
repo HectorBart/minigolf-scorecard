@@ -9,14 +9,14 @@ const LargeNumberInput = (props) => {
                 size="xl"
                 icon={<TiMinusOutline size={50}/>}
                 onPress={() => props.onChange(props.value - 1)}
-            ></Button>
+            />
             <Text h1>{props.value || 0}</Text>
             <Button
                 auto
                 size="xl"
                 icon={<TiPlusOutline size={50}/>}
                 onPress={() => props.onChange(props.value + 1)}
-            ></Button>
+            />
         </Row>
     );
 }

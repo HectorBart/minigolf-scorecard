@@ -21,3 +21,19 @@
 .setupInput > * {
   margin: 0 3rem 0 3rem;
 }
+
+.setupNext {
+  margin: 6rem 0 0 0;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .cardTitle {
+    font-size: 10vw
+  }
+
+  .setupHint > * {
+    font-size: 7vw;
+  }
+
+}

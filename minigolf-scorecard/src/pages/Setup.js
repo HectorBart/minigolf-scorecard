@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
 import LargeNumberInput from '../components/LargeNumberInput';
 import { useState } from 'react';
+import { TiArrowRightOutline } from 'react-icons/ti';
 
 const SetupPage = () => {
 
@@ -30,6 +31,12 @@ const SetupPage = () => {
               <LargeNumberInput
                 value={numberOfHoles}
                 onChange={(e) => setNumberOfHoles(e)}
+              />
+            </Row>
+            <Row className={styles.setupNext} justify="center">
+              <Button
+                size="xl"
+                icon={<TiArrowRightOutline size={50}/>}
               />
             </Row>
           </Card.Body>
