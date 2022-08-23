@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
 import { useState, useEffect } from 'react';
 import { TiArrowRightOutline, TiArrowLeftOutline } from 'react-icons/ti';
+import { TbGolf } from 'react-icons/tb';
 import SetupHoles from '../components/SetupHoles';
 import SetupPlayers from '../components/SetupPlayers';
 
@@ -78,7 +79,9 @@ const SetupPage = () => {
               <Button
                 className={styles.setupNext}
                 size="sm"
-                icon={<TiArrowRightOutline size={50}/>}
+                icon={setupStep === 1
+                ? <TiArrowRightOutline size={50}/>
+                : <TbGolf size={50}/>}
                 onPress={() => setSetupStep(setupStep + 1)}
               />
             </Row>
