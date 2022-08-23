@@ -93,9 +93,10 @@ const SetupPlayers = (props) => {
                     </Table.Body>
                 </Table>
             </Row>
-            <Row className={styles.setupPlayersButton} justify="center">
+            <Row className={styles.setupPlayersButtonContainer} justify="center">
                 <Button
                     size="lg"
+                    className={styles.setupPlayersButton}
                     icon={<TiPlusOutline size={30} />}
                     onPress={() => addPlayerAction()}
                 />
