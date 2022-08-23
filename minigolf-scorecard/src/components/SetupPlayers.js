@@ -45,9 +45,9 @@ const SetupPlayers = (props) => {
                         bordered
                         color="gradient"
                     >
-                        <Button
+                        {/* <Button
                             icon={<TiEdit size={20}/>}
-                        />
+                        /> */}
                         <Button
                             icon={<TiTrash size={20}/>}
                             onPress={() => props.removePlayer(player.key)}

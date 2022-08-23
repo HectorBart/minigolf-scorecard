@@ -33,7 +33,7 @@ const SetupPage = () => {
   }
 
   const updatePlayer = (player) => {
-    
+    setPlayers([...players.splice(players.findIndex(p => p.key === player.key), 1, player)]);
   }
 
   return (
@@ -61,7 +61,7 @@ const SetupPage = () => {
                 players={players}
                 addPlayer={(playerName) => addPlayer(playerName)}
                 removePlayer={(playerKey) => removePlayer(playerKey)}
-                updatePlayer={updatePlayer}
+                updatePlayer={(player) => updatePlayer(player)}
               />
               </>
             }
