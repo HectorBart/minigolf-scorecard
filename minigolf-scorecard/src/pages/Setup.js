@@ -2,41 +2,13 @@ import styles from '../styles/pages/Setup.module.css';
 
 import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
-import { useState, useEffect } from 'react';
 import { TiArrowRightOutline, TiArrowLeftOutline } from 'react-icons/ti';
 import { TbGolf } from 'react-icons/tb';
 import SetupHoles from '../components/SetupHoles';
 import SetupPlayers from '../components/SetupPlayers';
+import Hole from '../components/Hole';
 
-const SetupPage = () => {
-
-  const [numberOfHoles, setNumberOfHoles] = useState(1);
-  const [players, setPlayers] = useState([]);
-  const [setupStep, setSetupStep] = useState(1);
-
-  useEffect(() => { // this hook will get called everytime when myArr has changed
-    // perform some action which will get fired everytime when myArr gets updated
-       console.log('Updated State', players)
-  }, [players])
-
-  const addPlayer = (playerName) => {
-    setPlayers([...players, { 
-      key: players.length === 0 
-      ? 1 
-      : players[players.length - 1].key + 1,
-      name: playerName 
-    }]);
-  }
-
-  const removePlayer = (playerKey) => {
-    // 'players' is not up-to-date at this point for some reason?
-    setPlayers([...players.splice(players.findIndex(p => p.key === playerKey), 1)]);
-  }
-
-  const updatePlayer = (player) => {
-    setPlayers([...players.splice(players.findIndex(p => p.key === player.key), 1, player)]);
-  }
-
+const SetupPage = (props) => {
   return (
     <>
       <Helmet>
@@ -51,20 +23,18 @@ const SetupPage = () => {
             </Row>
           </Card.Header>
           <Card.Body>
-            { setupStep === 1 ?
+            { props.setupStep === 1 ?
               <SetupHoles
-                numberOfHoles={numberOfHoles}
-                setNumberOfHoles={setNumberOfHoles}
+                numberOfHoles={props.numberOfHoles}
+                setNumberOfHoles={props.setNumberOfHoles}
               />
               :
-              <>
               <SetupPlayers
-                players={players}
-                addPlayer={(playerName) => addPlayer(playerName)}
-                removePlayer={(playerKey) => removePlayer(playerKey)}
-                updatePlayer={(player) => updatePlayer(player)}
+                players={props.players}
+                addPlayer={(playerName) => props.addPlayer(playerName)}
+                removePlayer={(playerKey) => props.removePlayer(playerKey)}
+                updatePlayer={(player) => props.updatePlayer(player)}
               />
-              </>
             }
             <Row
               className={styles.setupStepButtons}
@@ -73,16 +43,16 @@ const SetupPage = () => {
                 className={styles.setupPrevious}
                 size="sm"
                 icon={<TiArrowLeftOutline size={50}/>}
-                onPress={() => setSetupStep(setupStep - 1)}
-                disabled={setupStep === 1}
+                onPress={() => props.setSetupStep(props.setupStep - 1)}
+                disabled={props.setupStep === 1}
               />
               <Button
                 className={styles.setupNext}
                 size="sm"
-                icon={setupStep === 1
-                ? <TiArrowRightOutline size={50}/>
-                : <TbGolf size={50}/>}
-                onPress={() => setSetupStep(setupStep + 1)}
+                icon={props.setupStep === 2
+                ? <TbGolf size={50}/>
+                : <TiArrowRightOutline size={50}/>}
+                onPress={() => props.setSetupStep(props.setupStep + 1)}
               />
             </Row>
           </Card.Body>
