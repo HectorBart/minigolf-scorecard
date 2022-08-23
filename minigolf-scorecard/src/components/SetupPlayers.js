@@ -66,7 +66,13 @@ const SetupPlayers = (props) => {
                 <Text h3>Who's playing?</Text>
             </Row>
             <Row className={styles.setupPlayersTableRow} justify="center">
-                <Table className={styles.setupPlayersTable}>
+                <Table 
+                    className={styles.setupPlayersTable}
+                    containerCss={{
+                        height: '45vh',
+                        overflowY: 'scroll'
+                    }}
+                >
                     <Table.Header columns={columns}>
                         {(c) => (
                         <Table.Column 
