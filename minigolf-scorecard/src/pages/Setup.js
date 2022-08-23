@@ -10,21 +10,17 @@ import SetupPlayers from '../components/SetupPlayers';
 const SetupPage = () => {
 
   const [numberOfHoles, setNumberOfHoles] = useState(1);
-  const [players, setPlayers] = useState([
-    {
-      key: "1",
-      name: "Test 1"
-    },
-    {
-      key: "2",
-      name: "Test 2"
-    },
-    {
-      key: "3",
-      name: "Test 3"
-    },
-  ]);
+  const [players, setPlayers] = useState([]);
   const [setupStep, setSetupStep] = useState(1);
+
+  const addPlayer = (playerName) => {
+    setPlayers([...players, { 
+      key: players.length === 0 
+      ? 1 
+      : players[players.length - 1].key + 1,
+      name: playerName 
+    }]);
+  }
 
   return (
     <>
@@ -50,6 +46,7 @@ const SetupPage = () => {
               <SetupPlayers
                 players={players}
                 setPlayers={setPlayers}
+                addPlayer={addPlayer}
               />
               </>
             }

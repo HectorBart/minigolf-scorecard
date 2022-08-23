@@ -20,6 +20,11 @@ const SetupPlayers = (props) => {
         }
     ];
 
+    const addPlayerName = (playerName) => {
+        setModalVisible(false);
+        props.addPlayer(playerName);
+    }
+
     const addPlayerAction = () => {
         setModalVisible(true);
     }
@@ -92,6 +97,7 @@ const SetupPlayers = (props) => {
             <AddPlayerModal 
                 visible={modalVisible}
                 closeHandler={() => setModalVisible(false)}
+                submitHandler={(playerName) => addPlayerName(playerName)}
             />
         </>
     );

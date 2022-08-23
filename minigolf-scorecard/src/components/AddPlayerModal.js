@@ -33,10 +33,17 @@ const AddPlayerModal = (props) => {
                 </Row>
             </Modal.Body>
             <Modal.Footer>
-                <Button auto color="error" onPress={props.closeHandler}>
+                <Button 
+                    auto
+                    color="error"
+                    onPress={props.closeHandler}
+                >
                     Cancel
                 </Button>
-                <Button auto onPress={props.closeHandler}>
+                <Button 
+                    auto
+                    onPress={() => props.submitHandler(playerName)}
+                >
                     Add
                 </Button>
             </Modal.Footer>
