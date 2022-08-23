@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const AddPlayerModal = (props) => {
 
-    const [playerName, setPlayerName] = useState(props.player?.name);
+    const [playerName, setPlayerName] = useState("");
 
     return (
         <Modal
@@ -42,7 +42,10 @@ const AddPlayerModal = (props) => {
                 </Button>
                 <Button 
                     auto
-                    onPress={() => props.submitHandler(playerName)}
+                    onPress={() => {
+                        setPlayerName("");
+                        props.submitHandler(playerName);
+                    }}
                 >
                     Add
                 </Button>
