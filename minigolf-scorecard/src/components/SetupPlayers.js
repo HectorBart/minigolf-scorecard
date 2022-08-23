@@ -50,6 +50,7 @@ const SetupPlayers = (props) => {
                         />
                         <Button
                             icon={<TiTrash size={20}/>}
+                            onPress={() => props.removePlayer(player.key)}
                         />
                     </Button.Group>
                 );
