@@ -13,8 +13,15 @@
   margin: 1.5rem;
 }
 
-.setupNext {
+.setupStepButtons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.setupNext, .setupPrevious {
+  height: 4rem;
   margin: 6rem 0 0 0;
+  width: 30%;
 }
 
 @media only screen and (max-width: 600px) {

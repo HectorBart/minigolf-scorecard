@@ -3,7 +3,7 @@ import styles from '../styles/pages/Setup.module.css';
 import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
 import { useState } from 'react';
-import { TiArrowRightOutline } from 'react-icons/ti';
+import { TiArrowRightOutline, TiArrowLeftOutline } from 'react-icons/ti';
 import SetupHoles from '../components/SetupHoles';
 import SetupPlayers from '../components/SetupPlayers';
 
@@ -53,9 +53,19 @@ const SetupPage = () => {
               />
               </>
             }
-            <Row className={styles.setupNext} justify="center">
+            <Row
+              className={styles.setupStepButtons}
+            >
               <Button
-                size="xl"
+                className={styles.setupPrevious}
+                size="sm"
+                icon={<TiArrowLeftOutline size={50}/>}
+                onPress={() => setSetupStep(setupStep - 1)}
+                disabled={setupStep === 1}
+              />
+              <Button
+                className={styles.setupNext}
+                size="sm"
                 icon={<TiArrowRightOutline size={50}/>}
                 onPress={() => setSetupStep(setupStep + 1)}
               />
