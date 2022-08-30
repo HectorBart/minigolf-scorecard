@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Setup from './pages/Setup';
 import Match from './pages/Match';
+import Scoreboard from './pages/Scoreboard';
 
 const nhost = new NhostClient({
   subdomain: process.env.REACT_APP_NHOST_SUBDOMAIN,
@@ -24,13 +25,15 @@ function App() {
   const [setupStep, setSetupStep] = useState(1);
   const [numberOfHoles, setNumberOfHoles] = useState(1);
   const [players, setPlayers] = useState([]);
+  const [showScoreboard, setShowScoreboard] = useState(false);
 
   const addPlayer = (playerName) => {
     setPlayers([...players, { 
       key: players.length === 0 
       ? 1 
       : players[players.length - 1].key + 1,
-      name: playerName 
+      name: playerName,
+      scores: []
     }]);
   }
 
@@ -41,6 +44,13 @@ function App() {
 
   const updatePlayer = (player) => {
     setPlayers([...players.splice(players.findIndex(p => p.key === player.key), 1, player)]);
+  }
+
+  const addPlayerScore = (playerScore) => {
+    let updatedPlayers = [...players];
+    let player = updatedPlayers[playerScore.key];
+    player.scores.push(playerScore.score);
+    setPlayers(updatedPlayers);
   }
 
   return (
@@ -68,10 +78,16 @@ function App() {
                       updatePlayer={(player) => updatePlayer(player)}
                       setNumberOfHoles={(no) => setNumberOfHoles(no)}
                     />
+                  : showScoreboard ?
+                    <Scoreboard
+                      players={players}
+                    />
                   :
                     <Match
+                      setShowScoreboard={(s) => setShowScoreboard(s)}
                       numberOfHoles={numberOfHoles}
                       players={players}
+                      addPlayerScore={(ps) => addPlayerScore(ps)}
                     />
                 }
               >

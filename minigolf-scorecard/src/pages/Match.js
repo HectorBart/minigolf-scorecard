@@ -13,6 +13,13 @@ const MatchPage = (props) => {
   const [numberOfHits, setNumberOfHits] = useState(1);
 
   const NextButtonHandler = () => {
+
+    props.addPlayerScore({
+        key: currentPlayer,
+        hole: currentHole,
+        score: numberOfHits
+    });
+
     if (currentPlayer < (props.players.length - 1)) 
     {
       setCurrentPlayer(currentPlayer + 1);
@@ -22,13 +29,14 @@ const MatchPage = (props) => {
     {
       if (currentHole < props.numberOfHoles) 
       {
+        props.setShowScoreboard(true);
         setCurrentHole(currentHole + 1);
         setCurrentPlayer(0);
         setNumberOfHits(1);
       }
       else
       {
-        console.log("Match Finished");
+        props.setShowScoreboard(true);
       }
     }
   }

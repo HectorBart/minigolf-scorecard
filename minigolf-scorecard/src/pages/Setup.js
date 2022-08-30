@@ -6,7 +6,6 @@ import { TiArrowRightOutline, TiArrowLeftOutline } from 'react-icons/ti';
 import { TbGolf } from 'react-icons/tb';
 import SetupHoles from '../components/SetupHoles';
 import SetupPlayers from '../components/SetupPlayers';
-import Hole from '../components/Hole';
 
 const SetupPage = (props) => {
   return (
