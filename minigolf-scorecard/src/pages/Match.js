@@ -12,6 +12,27 @@ const MatchPage = (props) => {
   const [currentHole, setCurrentHole] = useState(1);
   const [numberOfHits, setNumberOfHits] = useState(1);
 
+  const NextButtonHandler = () => {
+    if (currentPlayer < (props.players.length - 1)) 
+    {
+      setCurrentPlayer(currentPlayer + 1);
+      setNumberOfHits(1);
+    } 
+    else 
+    {
+      if (currentHole < props.numberOfHoles) 
+      {
+        setCurrentHole(currentHole + 1);
+        setCurrentPlayer(0);
+        setNumberOfHits(1);
+      }
+      else
+      {
+        console.log("Match Finished");
+      }
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -26,13 +47,11 @@ const MatchPage = (props) => {
             </Row>
           </Card.Header>
           <Card.Body>
-            { 
               <Hole
                 player={props.players[currentPlayer]}
                 numberOfHits={numberOfHits}
                 setNumberOfHits={(hits) => setNumberOfHits(hits)}
               />
-            }
             <Row
               className={styles.setupStepButtons}
             >
@@ -47,7 +66,7 @@ const MatchPage = (props) => {
                 className={styles.setupNext}
                 size="sm"
                 icon={<TiArrowRightOutline size={50}/>}
-                onPress={() => setCurrentPlayer(currentPlayer + 1)}
+                onPress={() => NextButtonHandler()}
               />
             </Row>
           </Card.Body>
