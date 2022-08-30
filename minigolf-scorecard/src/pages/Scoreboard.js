@@ -3,7 +3,7 @@ import styles from '../styles/pages/Setup.module.css';
 import { Helmet } from 'react-helmet';
 import { Card, Text, Row, Button } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
-import { TiArrowRightOutline, TiArrowLeftOutline } from 'react-icons/ti';
+import { TiArrowRepeatOutline } from 'react-icons/ti';
 import ScoreboardTable from '../components/ScoreboardTable';
 
 const ScoreboardPage = (props) => {
@@ -67,19 +67,16 @@ const ScoreboardPage = (props) => {
                   : `Well done ${leader.name}!`
                 }
               </Text>
-              {/* <Button
+            </Row>
+            <Row
+              className={styles.setupStepButtons}
+            >
+              <Button
                 className={styles.setupPrevious}
                 size="sm"
-                icon={<TiArrowLeftOutline size={50}/>}
-                onPress={() => setCurrentPlayer(currentPlayer - 1)}
-                disabled={currentPlayer === 0}
-              /> */}
-              {/* <Button
-                className={styles.setupNext}
-                size="sm"
-                icon={<TiArrowRightOutline size={50}/>}
-                onPress={() => NextButtonHandler()}
-              /> */}
+                icon={<TiArrowRepeatOutline size={50}/>}
+                onPress={() => window.location.reload()}
+              />
             </Row>
           </Card.Body>
         </Card>
