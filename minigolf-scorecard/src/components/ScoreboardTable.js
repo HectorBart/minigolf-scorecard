@@ -64,7 +64,15 @@ const ScoreboardTable = (props) => {
             <Table.Body items={props.players}>
                 {(p) => (
                 <Table.Row key={p.key}>
-                    {(columnKey) => <Table.Cell>{renderCell(p, columnKey)}</Table.Cell>}
+                    {(columnKey) => 
+                        <Table.Cell
+                            css={{
+                                padding: "1.5rem"
+                            }}
+                        >
+                            {renderCell(p, columnKey)}
+                        </Table.Cell>
+                    }
                 </Table.Row>
                 )}
             </Table.Body>
