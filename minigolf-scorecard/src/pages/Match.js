@@ -5,21 +5,28 @@ import { Card, Text, Row, Button } from '@nextui-org/react';
 import { useState } from 'react';
 import { TiArrowRightOutline, TiArrowLeftOutline } from 'react-icons/ti';
 import Hole from '../components/Hole';
+import ScoreboardTable from '../components/ScoreboardTable';
 
 const MatchPage = (props) => {
 
   const [currentPlayer, setCurrentPlayer] = useState(0);
   const [currentHole, setCurrentHole] = useState(1);
   const [numberOfHits, setNumberOfHits] = useState(1);
+  const [showScoreboard, setShowScoreboard] = useState(false);
 
   const NextButtonHandler = () => {
+
+    if (showScoreboard) {
+      setShowScoreboard(false);
+      return;
+    }
 
     props.addPlayerScore({
         key: currentPlayer,
         hole: currentHole,
         score: numberOfHits
     });
-
+    
     if (currentPlayer < (props.players.length - 1)) 
     {
       setCurrentPlayer(currentPlayer + 1);
@@ -29,7 +36,7 @@ const MatchPage = (props) => {
     {
       if (currentHole < props.numberOfHoles) 
       {
-        props.setShowScoreboard(true);
+        setShowScoreboard(true);
         setCurrentHole(currentHole + 1);
         setCurrentPlayer(0);
         setNumberOfHits(1);
@@ -55,11 +62,19 @@ const MatchPage = (props) => {
             </Row>
           </Card.Header>
           <Card.Body>
+            { showScoreboard ?
+              <Row justify="center">
+                <ScoreboardTable
+                  players={props.players}
+                />
+              </Row>
+              :
               <Hole
                 player={props.players[currentPlayer]}
                 numberOfHits={numberOfHits}
                 setNumberOfHits={(hits) => setNumberOfHits(hits)}
               />
+            }
             <Row
               className={styles.setupStepButtons}
             >

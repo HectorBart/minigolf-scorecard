@@ -15,10 +15,12 @@ const ScoreboardPage = (props) => {
   const [loading, setLoading] = useState(true);
 
   const getCurrentLeader = () => {
-    for (let i = 0; i < props.players.length; i++) {
+    for (let i = 0; i < props.players.length; i++) 
+    {
       const player = props.players[i];
       let score = player.scores.reduce((a, b) => a + b, 0);
-      if (leader.score > score || leader.score < 0) {
+      if (leader.score > score || leader.score < 0) 
+      {
         setLeader({
           name: player.name,
           score: score
