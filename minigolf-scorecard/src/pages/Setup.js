@@ -52,6 +52,8 @@ const SetupPage = (props) => {
                 ? <TbGolf size={50}/>
                 : <TiArrowRightOutline size={50}/>}
                 onPress={() => props.setSetupStep(props.setupStep + 1)}
+                disabled={props.setupStep === 2 && props.players.length < 1
+                ? true : false}
               />
             </Row>
           </Card.Body>
