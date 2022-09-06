@@ -51,7 +51,7 @@ const MatchPage = (props) => {
   return (
     <>
       <Helmet>
-        <title>Match</title>
+        <title>Minigolf Scorecard | Match</title>
       </Helmet>
 
       <div className={styles.container}>        

@@ -11,7 +11,7 @@ const SetupPage = (props) => {
   return (
     <>
       <Helmet>
-        <title>Scorecard Setup</title>
+        <title>Minigolf Scorecard | Setup</title>
       </Helmet>
 
       <div className={styles.container}>        

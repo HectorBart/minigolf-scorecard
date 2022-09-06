@@ -35,7 +35,7 @@ const ScoreboardPage = (props) => {
   return (
     <>
       <Helmet>
-        <title>Scoreboard</title>
+        <title>Minigolf Scorecard | Scoreboard</title>
       </Helmet>
 
       <div className={styles.container}>        
