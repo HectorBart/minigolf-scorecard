@@ -8,26 +8,32 @@ import ScoreboardTable from '../components/ScoreboardTable';
 
 const ScoreboardPage = (props) => {
 
-  const [leader, setLeader] = useState({
-    name: "",
-    score: -1
-  });
+  const [leader, setLeader] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const getCurrentLeader = () => {
+    let currentLeader = null;
     for (let i = 0; i < props.players.length; i++) 
     {
+      console.log(currentLeader);
+
       const player = props.players[i];
       let score = player.scores.reduce((a, b) => a + b, 0);
-      if (leader.score > score || leader.score < 0) 
+      if (currentLeader?.score > score || !currentLeader) 
       {
-        setLeader({
+        currentLeader = {
           name: player.name,
           score: score
-        });
+        };
+      } else if (currentLeader?.score === score) {
+        currentLeader = {
+          name: `${currentLeader.name} & ${player.name}`,
+          score: score
+        };
       }
     }
     setLoading(false);
+    setLeader(currentLeader);
   }
 
   useEffect(() => getCurrentLeader(), []);
